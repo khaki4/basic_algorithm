@@ -1,0 +1,1 @@
+print('%0.11f' % float(input()))
