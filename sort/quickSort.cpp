@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void quickSort(int *data, int start, int end);
+void quickSort(int *data, int start, int end);      
 
 int main() {
     int number = 10;
