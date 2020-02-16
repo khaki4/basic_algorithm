@@ -5,66 +5,55 @@ using namespace std;
 int number = 8;
 int sorted[8];
 
-void mergeSort(int data[], int m, int n);
-
-int main() {
-    int array[] = {7, 6, 5, 8, 3, 5, 9, 1};
-    mergeSort(array, 0, number - 1);
-    for (int i = 0; i < number; i++) {
-        cout << array[i] << ' ';
-    }
-    return 0;
-}
-
-// 일단 반으로 나누고 나중에 정렬
-void merge(int data[], int m, int middle, int n) {
+void merge(int arr[], int m, int middle, int n) {
     int i = m;
     int j = middle + 1;
     int k = m;
 
-    while (i <= middle && j <= n)
-    {
-        // 작은 순서대로 임시 배열에 삽입
-        if (data[i] <= data[j])
-        {
-            sorted[k] = data[i];
+    while (i <= middle && j <= n) {
+        // 작은 수 부터 삽입
+        if (arr[i] < arr[j]) {
+            sorted[k] = arr[i];
             i++;
-        }
-        else
-        {
-            sorted[k] = data[j];
+        } else {
+            sorted[k] = arr[j];
             j++;
         }
         k++;
     }
 
-    // 남은 데이터도 삽입
+    // 남은 데이터도 주입
     if (i > middle) {
         for (int t = j; t <= n; t++) {
-            sorted[k] = data[t];
+            sorted[k] = arr[t];
             k++;
         }
     } else {
-        for (int t = i; t <= m; t++) {
-            sorted[k] = data[t];
+        for (int t = i; t <= middle; t++) {
+            sorted[k] = arr[t];
             k++;
         }
     }
 
-    // 정렬된 배열을 삽입
+    // 정렬된 임시 배열을 원본 배열에 대입
     for (int t = m; t <= n; t++) {
-        data[t] = sorted[t];
+        arr[t] = sorted[t];
     }
 }
 
-void mergeSort(int arr[], int m, int n)
-{
-    // 배열의 길이가 2개 이상일 때만
-    if (m >= n)
-        return;
-
+void mergeSort(int arr[], int m, int n) {
+    if (m >= n) return;
     int middle = (m + n) / 2;
     mergeSort(arr, m, middle);
     mergeSort(arr, middle + 1, n);
     merge(arr, m, middle, n);
+}
+
+int main() {
+    int data[] = {7, 6, 5, 8, 3, 5, 9, 1};
+    mergeSort(data, 0, number - 1);
+    for (int i = 0; i < number; i++) {
+        cout << data[i] << ' ';
+    }
+    return 0;
 }
