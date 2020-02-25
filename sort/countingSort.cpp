@@ -20,7 +20,7 @@ int main() {
         while (count[i] > 0) {
             cout << i + 1 << ' ';
             count[i]--;
-        }
+        }   
     }
     return 0;
 }
